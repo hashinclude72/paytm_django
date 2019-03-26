@@ -1,15 +1,20 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
+from . import Checksum
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
+from .models import Paytm_history
 
 
 
+@login_required
 def start_payment(request):
-    user = request.user
 
     return render(request, 'paytm/start_payment.html', {'title': 'start'})
 
-
+@login_required
 def payment(request):
     user = request.user
     MERCHANT_KEY = settings.PAYTM_MERCHANT_KEY
@@ -37,10 +42,31 @@ def payment(request):
                 # 'PAYMENT_TYPE_ID':,                 #optional
                 # 'BANK_CODE':,                       #optional
             }
-    paytm_data = send_data                           #remove it
+    paytm_data = send_data
     paytm_data['CHECKSUMHASH'] = Checksum.generate_checksum(send_data, MERCHANT_KEY)
-    return render(request,"payments/paytm.html",{'paytmdict':paytm_data, 'user': user, 'title': 'Paytm'})
+    return render(request,"paytm/payment.html",{'paytmdict':paytm_data, 'user': user, 'title': 'Paytm'})
 
 
+@csrf_exempt
 def response(request):
-    pass
+    if request.method == "POST":
+        user = request.user
+        MERCHANT_KEY = settings.PAYTM_MERCHANT_KEY
+        data_dict = {}
+        data_dict = dict(request.POST.items())
+
+        verify = Checksum.verify_checksum(data_dict, MERCHANT_KEY, data_dict['CHECKSUMHASH'])
+        if verify:
+            for key in request.POST:
+                if key == "BANKTXNID" or key == "RESPCODE":
+                    if request.POST[key]:
+                        data_dict[key] = int(request.POST[key])
+                    else:
+                        data_dict[key] = 0
+                elif key == "TXNAMOUNT":
+                    data_dict[key] = float(request.POST[key])
+            # Paytm_history.objects.create(user=settings.USER, **data_dict)                 #saving data
+            return render(request, "paytm/response.html", {"paytm":data_dict, 'user': user, 'title': 'Confirm'})
+        else:
+            return HttpResponse("checksum verify failed")
+    return HttpResponse(status=200)

@@ -1,15 +1,16 @@
 <div>
-  <form method="post" action="https://securegw.paytm.in/theia/processTransaction" name="paytm">
+  <form method="post" action="https://securegw-stage.paytm.in/theia/processTransaction" name="paytm">
     <table border="1">
       <tbody>
         {% for key,value in paytmdict.items %}
-          <input type="text" name="{{key}}" value="{{value}}">
+          {{key}}   ----- <input type="text" name="{{key}}" value="{{value}}"><br>
         {% endfor %}
         <h2>{{ user }}</h2>
       </tbody>
     </table>
+    <button  type="submit" style="background-color:#00b9f5; border-color:#00b9f5;">Pay</button>
     <script type="text/javascript">
-      document.paytm.submit();
+      // document.paytm.submit();
     </script>
   </form>
 </div>

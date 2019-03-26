@@ -1,0 +1,18 @@
+<div>
+
+<!-- <form method="POST" action=""  name="save_details" enctype="multipart/form-data"> -->
+<table border="1">
+<tbody>
+{% for key,value in paytm.items %}
+    {{key}}---<input type="text" name="{{key}}" value="{{value}}"><br>
+  
+{% endfor %}
+<h2>{{ user }}</h2>
+</tbody>
+</table>
+<!-- <script type="text/javascript">
+  document.save_details.submit();
+</script> -->
+<button class="btn btn-primary px-4 py-2" type="submit"> Submit Transaction Details</button>
+<!-- </form> -->
+</div>

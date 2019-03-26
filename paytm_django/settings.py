@@ -106,7 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -119,3 +119,32 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+
+
+PAYTM_MERCHANT_KEY = 'GvYRwo%@Vl2Ml19y'
+PAYTM_MERCHANT_ID = 'BiDzIl44175596745392'
+HOST_URL = 'http://127.0.0.1:8000/'
+PAYTM_WEBSITE = 'WEBSTAGING'
+PAYTM_CALLBACK_URL = "response/"
+
+
+#     For staging :-
+
+#     Card:
+#     Card Number : Any Visa or Master Card
+#     Expiration Month & Year : Any Future month and Year
+#     CVV : 123
+#     OTP : 123123
+
+
+#     Wallet:
+#     Mobile Number : 7777777777
+#     Password : Paytm12345
+#     OTP: 489871
+
+#     Net Banking :
+#     Bank : Andhra Bank
+#     User : test
+#     Password : test
