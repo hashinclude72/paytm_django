@@ -12,7 +12,7 @@ from .models import Paytm_history
 @login_required
 def start_payment(request):
 
-    return render(request, 'paytm/start_payment.html', {'title': 'start'})
+    return render(request, 'paytm/start_payment.html')
 
 @login_required
 def payment(request):
@@ -42,6 +42,7 @@ def payment(request):
                 # 'AUTH_MODE':,                       #optional
                 # 'PAYMENT_TYPE_ID':,                 #optional
                 # 'BANK_CODE':,                       #optional
+                # see documentation https://developer.paytm.com/docs/v1/payment-gateway
             }
     paytm_data = send_data
     paytm_data['CHECKSUMHASH'] = Checksum.generate_checksum(send_data, MERCHANT_KEY)

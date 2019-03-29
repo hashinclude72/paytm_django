@@ -4,6 +4,7 @@ from django.utils import timezone
 
 class Paytm_history(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='rel_payment_paytm', on_delete=models.CASCADE, null=True, default=None)
+    MERC_UNQ_REF = models.IntegerField('USER ID')
     ORDERID = models.CharField('ORDER ID', max_length=30)
     TXNDATE = models.DateTimeField('TXN DATE', default=timezone.now)
     TXNID = models.CharField('TXN ID', max_length=100)
@@ -17,7 +18,6 @@ class Paytm_history(models.Model):
     RESPMSG = models.TextField('RESP MSG', max_length=250)
     TXNAMOUNT = models.FloatField('TXN AMOUNT')
     STATUS = models.CharField('STATUS', max_length=12)
-    MERC_UNQ_REF = models.CharField('MERC_UNQ_REF', max_length=30,default='not_set')
 
     # class Meta:
     #     app_label = 'paytm'
