@@ -37,6 +37,7 @@ def payment(request):
                 'EMAIL': email,                    #optional
                 'INDUSTRY_TYPE_ID':'Retail',
                 'CALLBACK_URL':CALLBACK_URL,
+                'MERC_UNQ_REF':user.id,               #used to save data in response
                 # 'PAYMENT_MODE_ONLY':,               #optional
                 # 'AUTH_MODE':,                       #optional
                 # 'PAYMENT_TYPE_ID':,                 #optional
@@ -44,7 +45,7 @@ def payment(request):
             }
     paytm_data = send_data
     paytm_data['CHECKSUMHASH'] = Checksum.generate_checksum(send_data, MERCHANT_KEY)
-    return render(request,"paytm/payment.html",{'paytmdict':paytm_data, 'user': user, 'title': 'Paytm'})
+    return render(request,"paytm/payment.html",{'paytmdict':paytm_data, 'user': user})
 
 
 @csrf_exempt
@@ -65,8 +66,8 @@ def response(request):
                         data_dict[key] = 0
                 elif key == "TXNAMOUNT":
                     data_dict[key] = float(request.POST[key])
-            # Paytm_history.objects.create(user=settings.USER, **data_dict)                 #saving data
-            return render(request, "paytm/response.html", {"paytm":data_dict, 'user': user, 'title': 'Confirm'})
+            Paytm_history.objects.create(user_id = data_dict['MERC_UNQ_REF'], **data_dict)                 #saving data
+            return render(request, "paytm/response.html", {"paytm":data_dict, 'user': user})
         else:
             return HttpResponse("checksum verify failed")
     return HttpResponse(status=200)
