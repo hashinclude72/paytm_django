@@ -1,4 +1,4 @@
-# Paytm Payments Gateway on Django (Python 3)
+# Paytm Payments Gateway on Django 2.1.7   (Python 3)
 ![Paytm](https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Paytm_logo.png/150px-Paytm_logo.png) <img src="https://static.djangoproject.com/img/logos/django-logo-positive.png"  height="45">
 
 ### Paytm payments Gateway example.
@@ -18,6 +18,12 @@ git clone https://github.com/jaswal72/paytm_django.git
 * Now install the requirements 
 ```sh
 pip install -r requirements.txt
+```
+```sh
+Django==2.1.7
+pkg-resources==0.0.0
+pycryptodome==3.8.0
+pytz==2018.9
 ```
 * Now go to payments ->settings.py and enter your credentials
 ```py
@@ -64,25 +70,29 @@ python manange.py runserver
 This should redirect you to Paytm Page.
 Test Credentials to use for login:
 
-> **Card:** <br>
->   Card Number : Any Visa or Master Card <br>
->   Expiration Month & Year : Any Future month and Year <br>
->   CVV : 123 <br>
->   OTP : 123123 <br>
+> **Card:**  
+>   Card Number : Any Visa or Master Card  
+>   Expiration Month & Year : Any Future month and Year  
+>   CVV : 123  
+>   OTP : 123123  
 
 
-> **Wallet:** <br>
->   Mobile Number : 7777777777 <br>
->   Password : Paytm12345 <br>
->   OTP: 489871 <br>
+> **Wallet:**  
+>   Mobile Number : 7777777777  
+>   Password : Paytm12345  
+>   OTP: 489871  
 
-> **Net Banking:** <br>
->   Bank : Andhra Bank <br>
->   User : test <br>
->   Password : test <br>
+> **Net Banking:**  
+>   Bank : Andhra Bank  
+>   User : test  
+>   Password : test  
 
 
 ### Paytm reference Documentation:
 
  * [Paytm Gateway Api Documentation](https://developer.paytm.com/docs/v1/payment-gateway) 
- * [Paytm Documentation](https://developer.paytm.com/docs) 
+ * [Paytm Documentation](https://developer.paytm.com/docs)
+   
+   
+#### For any issues contact me at:
+shubham__jaswal@hotmail.com
