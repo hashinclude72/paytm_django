@@ -121,15 +121,22 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
+#-----------  make these environment variables ------------------#
 
-
-PAYTM_MERCHANT_KEY = 'GvYRwo%@Vl2Ml19y'
-PAYTM_MERCHANT_ID = 'BiDzIl44175596745392'
+PAYTM_MERCHANT_KEY = '' # < your production KEY >
+PAYTM_MERCHANT_ID = '' # < your production ID >
+PAYTM_WEBSITE = 'DEFAULT'
+PAYTM_URL = 'https://securegw.paytm.in/theia/processTransaction'
 HOST_URL = 'http://127.0.0.1:8000/'
-PAYTM_WEBSITE = 'WEBSTAGING'
 PAYTM_CALLBACK_URL = "response/"
 
+if DEBUG:
+    PAYTM_MERCHANT_KEY = 'GvYRwo%@Vl2Ml19y' # < your staging key >
+    PAYTM_MERCHANT_ID = 'BiDzIl44175596745392' # < your staging ID >
+    PAYTM_WEBSITE = 'WEBSTAGING'
+    PAYTM_URL = 'https://securegw-stage.paytm.in/theia/processTransaction'
 
+#-----------  make these environment variables ------------------#
 #     For staging :-
 
 #     Card:

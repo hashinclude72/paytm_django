@@ -3,14 +3,14 @@
 <table border="1">
 <tbody>
 {% for key,value in paytm.items %}
-    {{key}}---<input type="text" name="{{key}}" value="{{value}}"><br>
+    {{key}}---<input type="text" name="{{key}}" value="{{value}}"><br>        <!--Make it hiddden-->
 
 {% endfor %}
-<h2>{{ user }}</h2>
+<!-- <h2>{{ user }}</h2> -->
 </tbody>
 </table>
-<!-- <script type="text/javascript">
+<script type="text/javascript">
   document.save_details.submit();
-</script> -->
-<button class="btn btn-primary px-4 py-2" type="submit"> Submit Transaction Details</button>
+</script>
+<!-- <button class="btn btn-primary px-4 py-2" type="submit"> Submit Transaction Details</button> -->
 </div>

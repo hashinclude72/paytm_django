@@ -14,17 +14,20 @@ def start_payment(request):
 
     return render(request, 'paytm/start_payment.html')
 
+
+@csrf_exempt
 @login_required
 def payment(request):
     user = request.user
     MERCHANT_KEY = settings.PAYTM_MERCHANT_KEY
     MERCHANT_ID = settings.PAYTM_MERCHANT_ID
     CALLBACK_URL = settings.HOST_URL + settings.PAYTM_CALLBACK_URL
+    PAYTM_URL = settings.PAYTM_URL
     order_id = Checksum.__id_generator__()     # Generating unique temporary id
     cust_id = user.username
-    bill = 1
-    mobile_no = '0987654321'
-    email = user.email
+    bill = 1                                   #Amount in INR payable by customer.
+    mobile_no = '0987654321'                   #Customer's mobile number. Passing this enables faster login.
+    email = user.email                         #Customer's email ID
 
     send_data = {
                 'MID':MERCHANT_ID,
@@ -46,7 +49,7 @@ def payment(request):
             }
     paytm_data = send_data
     paytm_data['CHECKSUMHASH'] = Checksum.generate_checksum(send_data, MERCHANT_KEY)
-    return render(request,"paytm/payment.html",{'paytmdict':paytm_data, 'user': user})
+    return render(request,"paytm/payment.html",{'paytmdict':paytm_data, 'user': user, 'paytmurl' :PAYTM_URL})
 
 
 @csrf_exempt
@@ -57,9 +60,9 @@ def response(request):
         data_dict = {}
         data_dict = dict(request.POST.items())
 
-        verify = Checksum.verify_checksum(data_dict, MERCHANT_KEY, data_dict['CHECKSUMHASH'])
+        verify = Checksum.verify_checksum(data_dict, MERCHANT_KEY, data_dict['CHECKSUMHASH'])             #verifing checksum
         if verify:
-            for key in request.POST:
+            for key in request.POST:                                                                      #converting string to float
                 if key == "BANKTXNID" or key == "RESPCODE":
                     if request.POST[key]:
                         data_dict[key] = int(request.POST[key])

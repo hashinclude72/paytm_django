@@ -1,16 +1,17 @@
 <div>
-  <form method="post" action="https://securegw-stage.paytm.in/theia/processTransaction" name="paytm">
+  <h2>YOUR COMPANY NAME<br><br> Merchant Check Out Page<br><br> Please Do Not Refresh The Page !!!</h2><br>
+  <form method="post" action="{{ paytmurl }}" name="paytm">
     <table border="1">
       <tbody>
         {% for key,value in paytmdict.items %}
-          {{key}}   ----- <input type="text" name="{{key}}" value="{{value}}"><br>
+          {{key}}   ----- <input type="text" name="{{key}}" value="{{value}}"><br>   <!--Make it hiddden-->
         {% endfor %}
-        <h2>{{ user }}</h2>
+        <!-- <h2>{{ user }}</h2> -->
       </tbody>
     </table>
-    <button  type="submit" style="background-color:#00b9f5; border-color:#00b9f5;">Pay</button>
+    <!-- <button  type="submit" style="background-color:#00b9f5; border-color:#00b9f5;">Pay</button> -->
     <script type="text/javascript">
-      // document.paytm.submit();
+      document.paytm.submit();
     </script>
   </form>
 </div>
