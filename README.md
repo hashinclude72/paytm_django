@@ -1,5 +1,5 @@
 # Paytm Payments Gateway on Django (Python 3)
-![Paytm](https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Paytm_logo.png/150px-Paytm_logo.png) <img src="https://static.djangoproject.com/img/logos/django-logo-positive.png"  height="50">
+![Paytm](https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Paytm_logo.png/150px-Paytm_logo.png) <img src="https://static.djangoproject.com/img/logos/django-logo-positive.png"  height="45">
 
 ### Paytm payments Gateway example.
 
