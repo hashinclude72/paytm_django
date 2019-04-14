@@ -94,5 +94,5 @@ Test Credentials to use for login:
  * [Paytm Documentation](https://developer.paytm.com/docs)
    
    
-#### For any issues contact me at:
+#### For any problem raise an issue or contact me at:
 shubham__jaswal@hotmail.com
